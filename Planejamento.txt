@@ -1,0 +1,61 @@
+TiposUsuario: Adiministrador,Medico,
+Paciente
+
+Adm - Usuario - 
+Post/Create * TiposUsuario
+
+Adm - Consulta- Post/Create - 
+Paciente,Data,
+ClinicaD
+Medico e Especialidade
+
+Adm - Consulta - Delete
+
+Adm - Clinica - Listar/Select - 
+Endereco,Horario de Funcionamento,
+CNPJ,NomeFantasia,Razão Social
+
+Medico - Consulta -
+Listar/Select Where Medico IdMedico
+
+Medico - Prontuario - Post/Create - Prontuario   Update
+Descricao
+
+Paciente - Consultas - 
+Listar/Select Where
+Paciente IdPAciente
+
+Entidades
+
+Usuario - IdUsuario,Nome,Email,Senha,IdTiposUsuario,FK(TiposUsuario(IdTiposUsuario,Titulo))
+
+TiposUsuario - IdTiposUsuario, Titulo
+
+Consulta - IdConsulta,Usuario(Paciente),Usuario(Medico),Data,
+Especialidade(Medico),IdProntuario, FK(Prontuario{IdProntuario,Descricao})
+
+Comentario - IdComentario,IdConsulta,
+FK(Consulta(IdConsulta,,Usuario(Paciente),Usuario(Medico),Data,Especialidade-Usuario(Medico)))
+
+Clinica - Endereco,HorarioFuncionamento,CNPJ,NomeFantasia,RazaoSocial
+
+Prontuario - Descricacao
+
+Paciente - IdPaciente, NomePaciente, DataNascimento,RG,CPF,Endereco, 
+IdUsuario, FK(Usuario{IdUsuario,Nome,Email,Senha,
+IdTiposUsuario,FK(TiposUsuario(IdTiposUsuario,Titulo)})
+
+Especialidades - IdEspecialidades,Titulo
+
+Medico IdMedico,Nome,CRM,DataNascimento,IdCLinica,FK(Clinica{IdClinica,NomeFantasia,Razão Social
+}),IdEspecialidades,FK(Especialidades{IdEspecialidades,Titulo}),
+FK(Usuario{IdUsuario,Nome,Email,Senha,
+IdTiposUsuario,FK(TiposUsuario(IdTiposUsuario,Titulo)})
+
+
+ 
+
+
+
+
+
