@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthClinic_WebAPI_Lucas.Domains
 {
-    [Table("Medico")]
+    [Table(nameof(Medico))]
     public class Medico
     {
-        [Key]
-
-        public Guid IdMedico { get; set; }
+        [Key] 
+        public Guid IdMedico { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "Nome do Médico é obrigatório")]

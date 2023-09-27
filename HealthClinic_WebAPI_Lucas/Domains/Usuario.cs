@@ -1,16 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthClinic_WebAPI_Lucas.Domains
 {
-    [Table("Usuario")]
+    [Table(nameof(Usuario))]
+    [Index(nameof(Email), IsUnique = true)]
     public class Usuario
     {
         [Key]
-        public Guid IdUsuario { get; set; }
+        public Guid IdUsuario { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "Email do Usuario é obrigatório")]
+        
         public string Email { get; set; }
 
         [Column(TypeName = "VARCHAR(20)")]

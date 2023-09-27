@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthClinic_WebAPI_Lucas.Domains
 {
-    [Table("Especialidades")]
+    [Table(nameof(Especialidades))]
     public class Especialidades
     {
         [Key]
-        public Guid IdEspecialidades { get; set; }
+        public Guid IdEspecialidades { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "Titulo das especialidades é obrigatório")]

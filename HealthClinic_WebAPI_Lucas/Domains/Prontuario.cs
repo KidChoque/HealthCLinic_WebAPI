@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthClinic_WebAPI_Lucas.Domains
 {
-    [Table("Prontuario")]
+    [Table(nameof(Prontuario))]
     public class Prontuario
     {
         [Key]
-        public Guid IdProntuario { get; set; }
+        public Guid IdProntuario { get; set; } = Guid.NewGuid();
 
         [Column("DescricaoExame")]
         [Required(ErrorMessage ="Descrição obrigatória")]

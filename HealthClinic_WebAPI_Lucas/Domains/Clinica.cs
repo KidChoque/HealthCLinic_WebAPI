@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthClinic_WebAPI_Lucas.Domains
 {
-    [Table("Clinica")]
+    [Table(nameof(Clinica))]
     public class Clinica
     {
         [Key]
-        public Guid IdClinica { get; set; }
+        public Guid IdClinica { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "Nome Fantasia da Clínica obrigatória")]
@@ -21,9 +21,17 @@ namespace HealthClinic_WebAPI_Lucas.Domains
         [Required(ErrorMessage = "Razão social da Clínica é obrigatória")]
         public string RazaoSocial { get; set; }
 
-        [Column(TypeName = "T"]
+        [Column(TypeName = "TIME")]
+        [Required(ErrorMessage = "Horário de Abertura da Clínica é obrigatório")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
         public TimeSpan HoraAbertura  { get; set; }
 
+        [Column(TypeName = "TIME")]
+        [Required(ErrorMessage = "Horário de Fechamento da Clínica é obrigatório")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
+        public TimeSpan HoraFechamento { get; set; }
 
 
         [Column(TypeName = "VARCHAR(100)")]
