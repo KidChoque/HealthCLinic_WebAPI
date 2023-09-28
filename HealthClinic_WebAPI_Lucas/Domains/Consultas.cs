@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthClinic_WebAPI_Lucas.Domains
 {
     [Table("Consultas")]
+    [Index(nameof(IdProntuario), IsUnique = true)]
+    //Sujeito a teste para não haver repetição do prontuário
     public class Consultas
     {
         [Key] 
@@ -12,12 +15,12 @@ namespace HealthClinic_WebAPI_Lucas.Domains
         [Column(TypeName = "DATE")]
         [Required(ErrorMessage = "Data de Agendamento é obrigatória")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"YYYY-MM-DD")]
-        public TimeSpan DataAgendamento { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"0:dd/MM/yyyy")]
+        public DateTime DataAgendamento { get; set; }
 
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário do Agendamento é obrigatório")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
         public TimeSpan HorarioAgendamento { get; set; }
 
@@ -41,6 +44,11 @@ namespace HealthClinic_WebAPI_Lucas.Domains
 
         [ForeignKey(nameof(IdSituacao))]
         public Situacao Situacao { get; set; }
+
+        [Required(ErrorMessage = "Prontuário é obrigatório")]
+        public Guid IdProntuario { get; set; }
+        [ForeignKey(nameof(IdProntuario))]
+        public Prontuario Prontuarios { get; set; }
 
     }
 }

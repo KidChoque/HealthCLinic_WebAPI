@@ -1,19 +1,32 @@
-﻿using HealthClinic_WebAPI_Lucas.Domains;
+﻿using HealthClinic_WebAPI_Lucas.Contexts;
+using HealthClinic_WebAPI_Lucas.Domains;
 using HealthClinic_WebAPI_Lucas.Interfaces;
 
 namespace HealthClinic_WebAPI_Lucas.Repositories
 {
     public class TipoDeUsuarioRepository : ITipoDeUsuarioRepository
     {
+        private readonly HealthClinicContext _healthClinicContext;
 
+        public TipoDeUsuarioRepository()
+        {
+            _healthClinicContext = new HealthClinicContext();
+        }
         public void Cadastrar(TipoDeUsuario tiposUsuario)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.TipoDeUsuario.Add(tiposUsuario);
+
+            _healthClinicContext.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            TipoDeUsuario tipoBuscado = _healthClinicContext.TipoDeUsuario.Find(id);
+
+            _healthClinicContext.Remove(tipoBuscado);
+
+            _healthClinicContext.SaveChanges();
+
         }
     }
 }

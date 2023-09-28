@@ -13,6 +13,9 @@ namespace HealthClinic_WebAPI_Lucas.Domains
         [Column(TypeName = "TEXT")]
         public string Descricao { get; set; }
 
+        [Column(TypeName = "BIT")]
+        public bool Exibe { get; set; }
+
         [Required(ErrorMessage = "Indique a consulta a ser comentada")]
         public Guid IdConsulta { get; set; }
 

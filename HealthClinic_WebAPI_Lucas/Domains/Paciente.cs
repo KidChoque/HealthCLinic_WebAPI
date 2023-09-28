@@ -18,9 +18,7 @@ namespace HealthClinic_WebAPI_Lucas.Domains
 
         [Column(TypeName = "DATE")]
         [Required(ErrorMessage ="Data de nascimento do pasciente obrigatória")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"YYYY-MM-DD")]
-        public TimeSpan DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
 
         [Column(TypeName = "VARCHAR(11)")]
         [Required(ErrorMessage = "CPF do Paciente é obrigatório")]
@@ -41,7 +39,7 @@ namespace HealthClinic_WebAPI_Lucas.Domains
         [Required(ErrorMessage = "Usuario do Médico é obrigatório")]
         public Guid IdUsuario { get; set; }
 
-        [ForeignKey(nameof(IdMedico))]
+        [ForeignKey(nameof(IdUsuario))]
         public Usuario Usuario { get; set; }
     }
 }

@@ -5,6 +5,7 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
 {
     public class PacienteRepository : IPacienteRepository
     {
+
         public void Atualizar(Guid id, Paciente paciente)
         {
             throw new NotImplementedException();

@@ -6,7 +6,7 @@ Post/Create * TiposUsuario
 
 Adm - Consulta- Post/Create - 
 Paciente,Data,
-ClinicaD
+Clinica,
 Medico e Especialidade
 
 Adm - Consulta - Delete
