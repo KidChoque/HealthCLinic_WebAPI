@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthClinic_WebAPI_Lucas.Migrations
 {
     [DbContext(typeof(HealthClinicContext))]
-    [Migration("20230928133513_BD")]
+    [Migration("20230929121606_BD")]
     partial class BD
     {
         /// <inheritdoc />
@@ -154,9 +154,6 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                     b.Property<Guid>("IdClinica")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdEspecialidades")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
 
@@ -168,9 +165,28 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
 
                     b.HasIndex("IdClinica");
 
+                    b.ToTable("Medico");
+                });
+
+            modelBuilder.Entity("HealthClinic_WebAPI_Lucas.Domains.MedicoEspecialidade", b =>
+                {
+                    b.Property<Guid>("IdMedicoEspecialidade")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdEspecialidades")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdMedico")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdMedicoEspecialidade");
+
                     b.HasIndex("IdEspecialidades");
 
-                    b.ToTable("Medico");
+                    b.HasIndex("IdMedico");
+
+                    b.ToTable("MedicoEspecialidade");
                 });
 
             modelBuilder.Entity("HealthClinic_WebAPI_Lucas.Domains.Paciente", b =>
@@ -338,12 +354,6 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("HealthClinic_WebAPI_Lucas.Domains.Especialidades", "Especialidades")
-                        .WithMany()
-                        .HasForeignKey("IdEspecialidades")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("HealthClinic_WebAPI_Lucas.Domains.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("IdMedico")
@@ -352,9 +362,26 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
 
                     b.Navigation("Clinica");
 
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("HealthClinic_WebAPI_Lucas.Domains.MedicoEspecialidade", b =>
+                {
+                    b.HasOne("HealthClinic_WebAPI_Lucas.Domains.Especialidades", "Especialidades")
+                        .WithMany()
+                        .HasForeignKey("IdEspecialidades")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("HealthClinic_WebAPI_Lucas.Domains.Medico", "Medico")
+                        .WithMany()
+                        .HasForeignKey("IdMedico")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Especialidades");
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Medico");
                 });
 
             modelBuilder.Entity("HealthClinic_WebAPI_Lucas.Domains.Paciente", b =>

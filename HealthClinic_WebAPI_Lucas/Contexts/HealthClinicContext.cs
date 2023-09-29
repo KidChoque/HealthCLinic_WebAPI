@@ -15,6 +15,9 @@ namespace HealthClinic_WebAPI_Lucas.Contexts
        public DbSet<Especialidades> Especialidades { get; set; } 
        public DbSet<Paciente> Paciente { get; set; } 
        public DbSet<Comentario> Comentario { get; set; }
+       public DbSet<MedicoEspecialidade> MedicoEspecialidade { get; set; }
+
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

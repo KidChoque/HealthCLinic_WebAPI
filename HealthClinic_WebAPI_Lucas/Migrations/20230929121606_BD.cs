@@ -106,7 +106,6 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                     CRM = table.Column<string>(type: "VARCHAR(8)", maxLength: 8, nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "DATE", nullable: false),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdEspecialidades = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdClinica = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -117,12 +116,6 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                         column: x => x.IdClinica,
                         principalTable: "Clinica",
                         principalColumn: "IdClinica",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Medico_Especialidades_IdEspecialidades",
-                        column: x => x.IdEspecialidades,
-                        principalTable: "Especialidades",
-                        principalColumn: "IdEspecialidades",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Medico_Usuario_IdMedico",
@@ -152,6 +145,31 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                         column: x => x.IdUsuario,
                         principalTable: "Usuario",
                         principalColumn: "IdUsuario",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicoEspecialidade",
+                columns: table => new
+                {
+                    IdMedicoEspecialidade = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdEspecialidades = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicoEspecialidade", x => x.IdMedicoEspecialidade);
+                    table.ForeignKey(
+                        name: "FK_MedicoEspecialidade_Especialidades_IdEspecialidades",
+                        column: x => x.IdEspecialidades,
+                        principalTable: "Especialidades",
+                        principalColumn: "IdEspecialidades",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_MedicoEspecialidade_Medico_IdMedico",
+                        column: x => x.IdMedico,
+                        principalTable: "Medico",
+                        principalColumn: "IdMedico",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -248,9 +266,14 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                 column: "IdClinica");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Medico_IdEspecialidades",
-                table: "Medico",
+                name: "IX_MedicoEspecialidade_IdEspecialidades",
+                table: "MedicoEspecialidade",
                 column: "IdEspecialidades");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicoEspecialidade_IdMedico",
+                table: "MedicoEspecialidade",
+                column: "IdMedico");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Paciente_IdUsuario",
@@ -277,7 +300,13 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                 name: "Comentario");
 
             migrationBuilder.DropTable(
+                name: "MedicoEspecialidade");
+
+            migrationBuilder.DropTable(
                 name: "Consultas");
+
+            migrationBuilder.DropTable(
+                name: "Especialidades");
 
             migrationBuilder.DropTable(
                 name: "Medico");
@@ -293,9 +322,6 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clinica");
-
-            migrationBuilder.DropTable(
-                name: "Especialidades");
 
             migrationBuilder.DropTable(
                 name: "Usuario");

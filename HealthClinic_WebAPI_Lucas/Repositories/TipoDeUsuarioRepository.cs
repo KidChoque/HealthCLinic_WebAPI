@@ -16,7 +16,7 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
         {
             _healthClinicContext.TipoDeUsuario.Add(tiposUsuario);
 
-            _healthClinicContext.SaveChanges();
+            _healthClinicContext.SaveChanges(); 
         }
 
         public void Deletar(Guid id)

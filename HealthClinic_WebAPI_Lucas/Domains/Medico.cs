@@ -30,12 +30,12 @@ namespace HealthClinic_WebAPI_Lucas.Domains
         [ForeignKey(nameof(IdMedico))]
         public Usuario Usuario { get; set; }
 
-        //ref.tabela Especialidades
-        [Required(ErrorMessage ="Especialidade do Médico")]
-        public Guid IdEspecialidades { get; set; }
+        ////ref.tabela Especialidades
+        //[Required(ErrorMessage ="Especialidade do Médico")]
+        //public Guid IdEspecialidades { get; set; }
 
-        [ForeignKey(nameof(IdEspecialidades))]
-        public Especialidades Especialidades { get; set; }
+        //[ForeignKey(nameof(IdEspecialidades))]
+        //public Especialidades Especialidades { get; set; }
 
         //ref.tabela Clinica
         [Required(ErrorMessage = "Clinica do Médico")]
