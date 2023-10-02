@@ -14,17 +14,33 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
         }
         public void AtualizarComentario(Guid id, Comentario comentario)
         {
-            throw new NotImplementedException();
+            Comentario comentarioBuscado = _healthClinicContext.Comentario.Find(id);
+
+            if (comentarioBuscado != null)
+            {
+                comentarioBuscado.IdComentario = comentario.IdComentario;
+                comentarioBuscado.Descricao = comentario.Descricao;
+                comentarioBuscado.IdConsulta = comentario.IdConsulta;
+                comentarioBuscado.Consultas = comentario.Consultas;
+            }
+            _healthClinicContext.Comentario.Update(comentarioBuscado);
+            _healthClinicContext.SaveChanges();
+
+
         }
 
         public void Comentar(Comentario comentario)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.Comentario.Add(comentario);
+            _healthClinicContext.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+             Comentario comentarioBuscado= _healthClinicContext.Comentario.Find(id);
+            _healthClinicContext.Comentario.Remove(comentarioBuscado);
+            _healthClinicContext.SaveChanges(); 
+
         }
     }
 }

@@ -23,14 +23,10 @@ namespace HealthClinic_WebAPI_Lucas.Domains
 
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário de Abertura da Clínica é obrigatório")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
         public TimeSpan HoraAbertura  { get; set; }
 
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário de Fechamento da Clínica é obrigatório")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
         public TimeSpan HoraFechamento { get; set; }
 
 

@@ -1,8 +1,9 @@
-﻿using System.Text.Json;
+﻿using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace HealthClinic_WebAPI_Lucas.Utils
 {
-    public class TimeSpanConverter
+    public class TimeSpanConverter : JsonConverter<TimeSpan>
     {
         public override TimeSpan Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -15,4 +16,6 @@ namespace HealthClinic_WebAPI_Lucas.Utils
             writer.WriteStringValue(value.ToString(@"hh\:mm"));
         }
     }
+    
 }
+

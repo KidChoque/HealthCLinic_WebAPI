@@ -8,7 +8,7 @@ namespace HealthClinic_WebAPI_Lucas.Interfaces
 
         void Deletar(Guid id);
 
-        List<Medico> Listar();
+        List<Paciente> Listar();
 
         void Atualizar(Guid id, Paciente paciente);
     }

@@ -14,12 +14,13 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
         }
         public void Cadastrar(Especialidades especialidades)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.Especialidades.Add(especialidades);
+            _healthClinicContext.SaveChanges();
         }
 
         public List<Especialidades> Listar()
         {
-            throw new NotImplementedException();
+            return _healthClinicContext.Especialidades.ToList();
         }
     }
 }

@@ -1,5 +1,6 @@
 using HealthClinic_WebAPI_Lucas.Utils;
 using System.ComponentModel;
+using TimeSpanConverter = HealthClinic_WebAPI_Lucas.Utils.TimeSpanConverter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-options.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
+    options.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
 });
 
 builder.Services.AddControllers();

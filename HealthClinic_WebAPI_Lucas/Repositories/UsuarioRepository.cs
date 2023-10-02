@@ -1,6 +1,7 @@
 ﻿using HealthClinic_WebAPI_Lucas.Contexts;
 using HealthClinic_WebAPI_Lucas.Domains;
 using HealthClinic_WebAPI_Lucas.Interfaces;
+using HealthClinic_WebAPI_Lucas.Utils;
 
 namespace HealthClinic_WebAPI_Lucas.Repositories
 {
@@ -14,17 +15,43 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
         }
         public Usuario BuscarPorEMailSenha(string email, string senha)
         {
-            throw new NotImplementedException();
+            Usuario usuarioBuscado = _healthClinicContext.Usuario.Select(u => new Usuario
+            {
+                IdUsuario = u.IdUsuario,
+                Email = u.Email,
+                TipoDeUsuario = new TipoDeUsuario
+                {
+                    IdTipoDeUsuario = u.IdTipoDeUsuario,
+                    TituloTipo = u.TipoDeUsuario.TituloTipo,
+                }
+
+            }).FirstOrDefault(u => u.Email == email);
+
+            if (usuarioBuscado != null)
+            {
+                bool confere = Criptografia.CompararHash(senha, usuarioBuscado.Senha!);
+
+                if (confere)
+                {
+                    return usuarioBuscado;
+                }
+            }
+            return null!;
         }
 
         public void Cadastrar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.Usuario.Add(usuario);
+            _healthClinicContext.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            Usuario usuarioBuscado = _healthClinicContext.Usuario.Find(id);
+
+            _healthClinicContext.Usuario.Remove(usuarioBuscado);
+
+            _healthClinicContext.SaveChanges();
         }
     }
 }

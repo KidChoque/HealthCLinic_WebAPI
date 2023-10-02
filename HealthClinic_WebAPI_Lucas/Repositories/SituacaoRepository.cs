@@ -14,7 +14,8 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
         }
         public void Cadastrar(Situacao situacao)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.Situacao.Add(situacao);
+            _healthClinicContext.SaveChanges();
         }
     }
 }

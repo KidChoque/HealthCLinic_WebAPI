@@ -14,7 +14,8 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
         }
         public void Adicionar(Prontuario prontuario)
         {
-            throw new NotImplementedException();
+            _healthClinicContext.Prontuario.Add(prontuario);
+            _healthClinicContext.SaveChanges();
         }
     }
 }

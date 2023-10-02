@@ -31,38 +31,7 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
 
         public List<Consultas> ListarDoMedico(Consultas consultas, Medico medico)
         {
-            if (medico.IdMedico == consultas.IdMedico)
-            {
-                _healthClinicContext.Consultas.Select(
-             u => new Consultas
-             {
-                 IdConsulta = u.IdConsulta,
-                 DataAgendamento = u.DataAgendamento,
-                 HorarioAgendamento = u.HorarioAgendamento,
-                 Paciente = new Paciente
-                 {
-                     IdPaciente = u.IdPaciente,
-                     NomePaciente = u.Paciente.NomePaciente,
-                     DataNascimento = u.Paciente.DataNascimento,
-                     Usuario = new Usuario
-                     {
-                         Email = u.Paciente.Usuario.Email
-                     }
-                
-
-                 }
-                 Medico = new Medico
-                
-                 {
-                     IdMedico = u.IdMedico,
-                     NomeMedico = u.Medico.NomeMedico
-                 }
-
-             }
-            }
-         
-              
-              )
+            throw new NotImplementedException();
         }
 
         public List<Consultas> ListarDoPaciente(Consultas consultas, Paciente paciente)
