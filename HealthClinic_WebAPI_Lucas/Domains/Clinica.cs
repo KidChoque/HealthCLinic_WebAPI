@@ -27,6 +27,7 @@ namespace HealthClinic_WebAPI_Lucas.Domains
 
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário de Fechamento da Clínica é obrigatório")]
+   
         public TimeSpan HoraFechamento { get; set; }
 
 

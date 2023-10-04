@@ -286,8 +286,8 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR(20)");
+                        .HasMaxLength(60)
+                        .HasColumnType("VARCHAR(60)");
 
                     b.HasKey("IdUsuario");
 

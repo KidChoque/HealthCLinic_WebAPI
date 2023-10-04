@@ -41,6 +41,9 @@ namespace HealthClinic_WebAPI_Lucas.Repositories
 
         public void Cadastrar(Usuario usuario)
         {
+            usuario.Senha = Criptografia.GerarHash(usuario.Senha!);
+            //Senha que virá da controller será criptografada
+
             _healthClinicContext.Usuario.Add(usuario);
             _healthClinicContext.SaveChanges();
         }

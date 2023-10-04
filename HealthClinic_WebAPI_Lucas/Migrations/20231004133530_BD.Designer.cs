@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthClinic_WebAPI_Lucas.Migrations
 {
     [DbContext(typeof(HealthClinicContext))]
-    [Migration("20230929121606_BD")]
+    [Migration("20231004133530_BD")]
     partial class BD
     {
         /// <inheritdoc />
@@ -289,8 +289,8 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("VARCHAR(20)");
+                        .HasMaxLength(60)
+                        .HasColumnType("VARCHAR(60)");
 
                     b.HasKey("IdUsuario");
 

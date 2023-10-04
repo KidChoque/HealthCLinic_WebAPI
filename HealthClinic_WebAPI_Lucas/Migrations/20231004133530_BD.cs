@@ -83,7 +83,7 @@ namespace HealthClinic_WebAPI_Lucas.Migrations
                 {
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    Senha = table.Column<string>(type: "VARCHAR(20)", maxLength: 20, nullable: false),
+                    Senha = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
                     IdTipoDeUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
